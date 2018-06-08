@@ -32,7 +32,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'name'     => 'required',
             'password' => 'required',
-            'email'    => 'required|unique:user|email'
+            'email'    => 'required|unique:users|email'
         ]);
 
         $user = User::create($input);
@@ -63,7 +63,7 @@ class UsersController extends Controller
         $this->validate($request, [
             'name'     => 'required',
             'password' => 'required',
-            'email'    => 'required|unique:user|email'
+            'email'    => 'required|unique:users|email'
         ]);
 
         if(empty($input['password'])){
