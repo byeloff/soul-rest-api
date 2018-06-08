@@ -20,7 +20,6 @@ class CreateTableUsers extends Migration
             $table->text('content');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
