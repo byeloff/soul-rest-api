@@ -78,7 +78,7 @@ class PostsController extends Controller
             'content'  => 'required|min:50',
         ]);
 
-        $post->update($input);
+        $post = $post->update($input);
 
         return response()->json([
             'msg'    => 'Post alterado com sucesso!',

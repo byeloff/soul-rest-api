@@ -70,7 +70,7 @@ class UsersController extends Controller
             unset($input['password']);
         }
 
-        $user->update($input);
+        $user = $user->update($input);
 
         return response()->json([
             'msg'    => 'Usuário alterado com sucesso!',
