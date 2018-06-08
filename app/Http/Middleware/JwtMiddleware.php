@@ -15,9 +15,11 @@ class JwtMiddleware {
         $token = $request->get('token');
 
         if(!$token) {
+
             return response()->json([
-                'error' => 'Nenhum token gerado.'
+                'msg' => 'Token não enviado!'
             ], 401);
+
         }
 
         try {
@@ -27,13 +29,13 @@ class JwtMiddleware {
         } catch(ExpiredException $e) {
 
             return response()->json([
-                'error' => 'Token expirado!'
+                'msg' => 'Token expirado!'
             ], 400);
 
         } catch(Exception $e) {
 
             return response()->json([
-                'error' => 'Ocorreu um erro ao decodificar seu token.'
+                'msg' => 'Ocorreu um erro ao decodificar seu token.'
             ], 400);
 
         }

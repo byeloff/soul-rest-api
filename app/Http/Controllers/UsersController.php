@@ -12,48 +12,49 @@ class UsersController extends Controller
 
         $users = User::all();
         
-        return response()->json($users);
+        return response()->json($users, 201);
 
     }
 
-    public function getUser($userId){
+    public function show($userId){
 
         $user = User::findOrFail($userId);
 
-        return response()->json($user);
+        return response()->json($user, 201);
 
 
     }
 
-    public function addUser(Request $request){
+    public function store(Request $request){
 
         $input = $request->all();
 
         $this->validate($request, [
             'name'     => 'required',
             'password' => 'required',
-            'email'    => 'required|email'
+            'email'    => 'required|unique:user|email'
         ]);
-
-        if(User::where('email', $input['email'])->count() > 0){
-            return response('Este e-mail já está cadastrado!', 400);
-        }
 
         $user = User::create($input);
 
-        return response()->json($user);
+        return response()->json([
+            'msg'    => 'Usuário adicionado com sucesso!',
+            'result' => $user
+        ], 201);
 
     }
 
-    public function deleteUser($userId){
+    public function delete($userId){
 
         User::findOrFail($userId)->delete();
 
-        return response('Usuário deletado com sucesso!');
+        return response()->json([
+            'msg' => 'Usuário deletado com sucesso!'
+        ], 201);
 
     }
 
-    public function editUser($userId, Request $request){
+    public function update($userId, Request $request){
 
         $user = User::find($userId);
 
@@ -62,18 +63,19 @@ class UsersController extends Controller
         $this->validate($request, [
             'name'     => 'required',
             'password' => 'required',
-            'email'    => 'required|email'
+            'email'    => 'required|unique:user|email'
         ]);
-
-        if(User::where('email', $input['email'])->where('id', '!=', $userId)->count() > 0){
-            return response('Este e-mail já está cadastrado!', 400);
-        }
 
         if(empty($input['password'])){
             unset($input['password']);
         }
 
         $user->update($input);
+
+        return response()->json([
+            'msg'    => 'Usuário alterado com sucesso!',
+            'result' => $user
+        ], 201);
 
     }
 

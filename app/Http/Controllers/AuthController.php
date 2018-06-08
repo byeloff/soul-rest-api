@@ -44,7 +44,7 @@ class AuthController extends BaseController {
         if (!$user) {
 
             return response()->json([
-                'error' => 'E-mail não encontrado'
+                'msg' => 'E-mail não encontrado'
             ], 400);
 
         }
@@ -58,7 +58,7 @@ class AuthController extends BaseController {
         }
 
         return response()->json([
-            'error' => 'E-mail ou senha incorretos!'
+            'msg' => 'E-mail ou senha incorretos!'
         ], 400);
 
     }

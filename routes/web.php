@@ -22,16 +22,16 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt.auth'], function () use 
 
     // Usuários;
     $router->get('users',  [ 'uses' => 'UsersController@index' ]);
-    $router->get('users/{id}', [ 'uses' => 'UsersController@getUser' ]);
-    $router->post('users', [ 'uses' => 'UsersController@addUser' ]);
-    $router->delete('users/{id}', [ 'uses' => 'UsersController@deleteUser' ]);
-    $router->put('users/{id}', [ 'uses' => 'UsersController@editUser' ]);
+    $router->get('users/{id}', [ 'uses' => 'UsersController@show' ]);
+    $router->post('users', [ 'uses' => 'UsersController@store' ]);
+    $router->delete('users/{id}', [ 'uses' => 'UsersController@delete' ]);
+    $router->put('users/{id}', [ 'uses' => 'UsersController@update' ]);
 
     // Posts;
     $router->get('posts',  [ 'uses' => 'PostsController@index' ]);
-    $router->get('posts/{id}', [ 'uses' => 'PostsController@getPost' ]);
-    $router->post('posts', [ 'uses' => 'PostsController@addPost' ]);
-    $router->delete('posts/{id}', [ 'uses' => 'PostsController@deletePost' ]);
-    $router->put('posts/{id}', [ 'uses' => 'PostsController@editPost' ]);
+    $router->get('posts/{id}', [ 'uses' => 'PostsController@show' ]);
+    $router->post('posts', [ 'uses' => 'PostsController@store' ]);
+    $router->delete('posts/{id}', [ 'uses' => 'PostsController@delete' ]);
+    $router->put('posts/{id}', [ 'uses' => 'PostsController@update' ]);
 
 });

@@ -47,7 +47,9 @@ class Handler extends ExceptionHandler
     {
 
         if ($e instanceof ModelNotFoundException) {
-            return response('Nada encontrado com este ID.', 400);
+            return response()->json([
+                'error' => 'Nada encontrado com este ID.'
+            ], 400);
         }
 
         return parent::render($request, $e);
