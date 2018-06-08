@@ -70,7 +70,9 @@ class UsersController extends Controller
             unset($input['password']);
         }
 
-        $user = $user->update($input);
+        $user->update($input);
+
+        $user = User::find($userId);
 
         return response()->json([
             'msg'    => 'Usuário alterado com sucesso!',
